@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  minecraft-server:
+    image: itzg/minecraft-server
+    container_name: minecraft-server
+    ports:
+      - "25565:25565/tcp"
+      - "25565:25565/udp"
+    volumes:
+      # Mount ไฟล์ JAR โดยตรงไปยังตำแหน่งที่คาดหวังภายใน /data
+      - ./arclight-forge-1.20.1-1.0.6.jar:/data/arclight-forge-1.20.1-1.0.6.jar
+      # Mount โฟลเดอร์ต่างๆ ไปยังตำแหน่งที่คาดหวังภายใน /data
+      - ./mods:/data/mods
+      - ./plugins:/data/plugins
+      - ./world:/data/world
+      # Mount ไฟล์ config ต่างๆ ไปยังตำแหน่งที่คาดหวังภายใน /data
+      - ./ops.json:/data/ops.json
+      - ./server.properties:/data/server.properties
+    environment:
+      EULA: "TRUE" # ยอมรับ EULA ของ Minecraft
+      TYPE: "CUSTOM" # กำหนดประเภทเป็น CUSTOM
+      # *** เปลี่ยนจาก SERVER_JAR เป็น CUSTOM_SERVER ***
+      CUSTOM_SERVER: "arclight-forge-1.20.1-1.0.6.jar" # ระบุชื่อไฟล์ Jar ของ server ที่อยู่ใน /data
+      VERSION : "1.20.1" # ยังคงระบุเวอร์ชั่นของ Minecraft
+      MEMORY: "4G" # กำหนด RAM ที่ container ใช้ได้ (ปรับตามต้องการ)
+      JVM_XX_OPTS: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1HeapWastePercent=10 -XX:SurvivorRatio=12 -XX:MaxTenuringThreshold=1 -Daikars.new.flags=true -Daikars.gc.flags=true" # Aikar's flags (แนะนำสำหรับประสิทธิภาพ)
+    restart: unless-stopped
+    network_mode: bridge

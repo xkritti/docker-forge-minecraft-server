@@ -1,0 +1,51 @@
+############################
+#FlyPlus plugin by iJ0hny. #
+#Version: 3.2              #
+#Make sure to leave your   #
+#thoughts on a review.     #
+############################
+
+#The message that a player receives when they execute a command but have no permission for it
+No-Permission-Message: '&0[&fFlyPlus&0]&r: &cYou are not permitted to do this!'
+
+#When the player that you try to change fly mode is offline/doesn't exist.
+No-Target-Message: '&0[&fFlyPlus&0]&r: &4That player is not online!'
+
+#Messages that admin receives.
+Reload-Message: '&0[&fFlyPlus&0]&r: &2Config Reloaded!'
+
+#Message when you toggle fly on|off for yourself.
+Enable-Message: '&0[&fFlyPlus&0]&r: &2Fly enabled!'
+Disable-Message: '&0[&fFlyPlus&0]&r: &4Fly disabled!'
+
+#NOTE: %player% variable only available for the messages below.
+#In messages below, the %player% variable is replaced with the player's name.
+#Messages when you toggle fly on|off for someone else.
+Enabled-By-Message: '&0[&fFlyPlus&0]&r: &2Fly enabled by %player%!'
+Enabled-For-Message: '&0[&fFlyPlus&0]&r: &2Fly enabled for %player%!'
+Disabled-By-Message: '&0[&fFlyPlus&0]&r: &4Fly disabled by %player%!'
+Disabled-For-Message: '&0[&fFlyPlus&0]&r: &4Fly disabled for %player%!'
+Enabled-For-Everyone: '&0[&fFlyPlus&0]&r: &2Fly enabled from admins!'
+Disabled-For-Everyone: '&0[&fFlyPlus&0]&r: &4Fly disabled from admins!'
+
+#Message that shows up when player enters a world that's not listed below.
+Plugin-Disabled-Message:
+  Enabled: true
+  Message: '&0[&fFlyPlus&0]&r: &4FlyPlus is disabled in this world!'
+Plugin-Enabled-Message:
+  Enabled: true
+  Message: '&0[&fFlyPlus&0]&r: &aFlyPlus is enabled in this world!'
+
+#Enable fly upon player's join on server, for players that have fly.join permission.
+#If true = whoever has permission fly.join will have fly ON once they join the server.
+#If false = no-one will have fly ON once they join despite if they have fly.join permission or not.
+Fly-On-Join: true
+#Keep flight status upon player's quit. (i.e if player logs off with flight off, they'll join with flight off
+#despite having Fly-On-Join option true!
+Keep-Fly-Status-On-Quit: true
+#Enable fly when players join an Enabled-World automatically.
+#If this option is false, it'll check for the players' flight status from previous world (if it was an Enabled-World)
+Fly-Automatically-In-Enabled-Worlds: true
+
+#List of worlds that the plugin is enabled on.
+Enabled-Worlds: ''
